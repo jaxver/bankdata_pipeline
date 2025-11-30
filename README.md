@@ -1,9 +1,6 @@
 # BankData Production Pipeline
 
-A production-ready subset of the BankData automation project designed for public consumption. This module exposes a clean transaction ingestion pipeline that validates API credentials, downloads account transactions, extracts remittance keys (IBAN, BIC, Naam, etc.), and produces downstream-ready data sets with automated key quality reports.
-
-> **Why a separate module?**  
-> This folder is intended to live as a Git submodule in a public repository. Runtime secrets, access tokens, and instance-specific configuration stay outside of `prod_module`, keeping the published code safe while still offering a complete, reproducible pipeline.
+A production-ready subset of the BankData PSD2 API designed for personal use. This module exposes a clean transaction ingestion pipeline that validates API credentials, downloads account transactions, extracts important info and produces downstream-ready data sets with automated key quality reports.
 
 ## Highlights
 - Token lifecycle management (request + refresh) with pluggable storage paths.
@@ -40,9 +37,9 @@ prod_module/
 ```
 
 ## Environment & Secrets
-Actual credentials **must live outside** this module. Recommended setup:
+Recommended setup:
 
-1. Copy `examples/env.template` to a secure location that is *not* tracked by Git (e.g. `../bankdata.local.env`).
+1. Copy `examples/env.template` to a secure location.
 2. Populate the values (API base URL, account id, secret id/key).
 3. Export `BANKDATA_ENV_FILE=/absolute/path/to/bankdata.local.env` **before** running the pipeline. The loader also respects existing process environment variables, so CI/CD can inject them directly without a file.
 
@@ -73,7 +70,7 @@ The `.gitignore` file already excludes generic `.env` artifacts and the runtime/
    - `runtime/analysis/key_validation_report.json`
 
 ## Key Validation Flow
-1. Each transaction’s `remittanceInformationUnstructuredArray` is parsed for the standard key/value schema (`IBAN`, `BIC`, `Naam`, `Omschrijving`, etc.).
+1. For Dutch banks, each transaction’s `remittanceInformationUnstructuredArray` is parsed for the standard key/value schema (`IBAN`, `BIC`, `Naam`, `Omschrijving`, etc.).
 2. The parser tolerates multi-line values and noisy payment method lines.
 3. `key_validation.py` asserts the presence and format of each key. The report includes:
    - Percent of rows with every key present.
@@ -90,4 +87,4 @@ The `.gitignore` file already excludes generic `.env` artifacts and the runtime/
 - Point your CI to `scripts/run_pipeline.py` for automated ingestion.
 - Extend `docs/architecture.md` with organization-specific diagrams or SOPs.
 
-Feel free to tailor the structure, but keep the secrets outside of `prod_module` when publishing to GitHub.
+Feel free to tailor the structure to your liking!
