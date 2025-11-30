@@ -1,0 +1,57 @@
+{
+  "transactions": {
+    "booked": [
+      {
+        "transactionId": "SAMPLE-001",
+        "internalTransactionId": "SAMPLE-001",
+        "bookingDate": "2025-01-05",
+        "transactionAmount": {
+          "amount": -42.50,
+          "currency": "EUR"
+        },
+        "balanceAfterTransaction": {
+          "balanceAmount": {
+            "amount": 1284.75,
+            "currency": "EUR"
+          }
+        },
+        "remittanceInformationUnstructuredArray": [
+          "Naam: Example Wholesale BV",
+          "IBAN: NL00ABNA0123456789",
+          "BIC: ABNANL2A",
+          "Omschrijving: Office supplies",
+          "Kenmerk: ORD-2025-001",
+          "NR: 123456789",
+          "Incassant: EXAMPLE123",
+          "Machtiging: AUT-001",
+          "Land: NL",
+          "SEPA Overboeking"
+        ]
+      },
+      {
+        "transactionId": "SAMPLE-002",
+        "internalTransactionId": "SAMPLE-002",
+        "bookingDate": "2025-01-07",
+        "transactionAmount": {
+          "amount": 950.00,
+          "currency": "EUR"
+        },
+        "balanceAfterTransaction": {
+          "balanceAmount": {
+            "amount": 2234.75,
+            "currency": "EUR"
+          }
+        },
+        "remittanceInformationUnstructuredArray": [
+          "Naam: Sample Consulting",
+          "IBAN: NL11RABO0987654321",
+          "BIC: RABONL2U",
+          "Omschrijving: Retainer January",
+          "Kenmerk: CONTRACT-77",
+          "Land: NL",
+          "SEPA iDEAL"
+        ]
+      }
+    ]
+  }
+}

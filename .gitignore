@@ -1,0 +1,17 @@
+# Generated artifacts
+runtime/
+tokens/
+*.log
+*.tmp
+__pycache__/
+*.pyc
+.pytest_cache/
+.cache/
+
+# Environment and credential files (keep these outside of the module repo)
+.env
+*.env
+.env.*
+access_token.json
+runtime/analysis/*
+runtime/extracts/*
