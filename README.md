@@ -1,6 +1,6 @@
 # BankData Production Pipeline
 
-A production-ready subset of the BankData PSD2 API designed for personal use. This module exposes a clean transaction ingestion pipeline that validates API credentials, downloads account transactions, extracts important info and produces downstream-ready data sets with automated key quality reports.
+A production-ready subset of the BankData PSD2 API designed for personal use. This repo contains a clean transaction ingestion pipeline that validates API credentials, downloads account transactions, extracts important info and produces downstream-ready data sets with automated key quality reports.
 
 ## Highlights
 - Token lifecycle management (request + refresh) with pluggable storage paths.
@@ -12,7 +12,7 @@ A production-ready subset of the BankData PSD2 API designed for personal use. Th
 
 ## Repository Layout
 ```
-prod_module/
+bankdata_pipeline/
 ├── bankdata_pipeline/          # Source package
 │   ├── dataset.py              # Dataset builder + key extraction helpers
 │   ├── config.py               # Environment & storage configuration loader
@@ -48,12 +48,12 @@ The `.gitignore` file already excludes generic `.env` artifacts and the runtime/
 ## Quick Start
 1. **Install dependencies**
    ```bash
-   cd prod_module
+   cd bankdata_pipeline
    python -m venv .venv
    .venv/Scripts/activate  # or source .venv/bin/activate on macOS/Linux
    pip install -r requirements.txt
    ```
-2. **Provide configuration outside the module**
+2. **Provide configuration outside the repo**
    ```bash
    cp examples/env.template ../bankdata.local.env
    # edit ../bankdata.local.env with your credentials
@@ -82,9 +82,7 @@ The `.gitignore` file already excludes generic `.env` artifacts and the runtime/
 - `tests/test_extract_fields.py` ensures edge-case coverage for the parser.
 - `data/samples/transactions_sample.json` provides a synthetic payload you can point the pipeline to (set `BANKDATA_SAMPLE_MODE=true`) for quick demos.
 
-## Next Steps
-- Wire this module into your main repo as a Git submodule.
-- Point your CI to `scripts/run_pipeline.py` for automated ingestion.
-- Extend `docs/architecture.md` with organization-specific diagrams or SOPs.
+## License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
 
 Feel free to tailor the structure to your liking!
